@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Freshers' Party Feedback</title>
+    <style>
+        /* Adding some basic animations */
+        h1,
+        h3 {
+            animation: fadeIn 2s;
+        }
+
+        div {
+            animation: slideIn 2s;
+            position: relative;
+            /* To position the sticker */
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            animation: bounce 1s infinite;
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 100;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(0%);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(10);
+            }
+
+            40% {
+                transform: translateY(10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .sticker-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .sticker {
+            width: 200px;
+            height: 150px;
+            animation: fadeIn 2s;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Freshers' Party Feedback Form</h1>
+    <h3 Style="font-style: italic;" >Ola Amigo</h3>
+    <!-- Feedback form starts here -->
+    <form>
+        <div style="background-color: burlywood; padding: 20px;">
+
+            <!-- Basic form fields for feedback -->
+            Your Name: <input type="text" /><br /><br />
+
+            <p>How was the event? <br />
+                <textarea style="background-color: whitesmoke;"></textarea><br /><br />
+
+                Rate the party (1-10): <input type="range" min="1" max="10" /><br /><br />
+
+                Favorite Part of the Party:<br />
+                <input type="checkbox"> Music
+                <input type="checkbox"> Dance
+                <input type="checkbox"> Food<br /><br />
+
+                Would you attend again?<br />
+                <input type="radio" name="attend" /> Yes
+                <input type="radio" name="attend" /> No<br /><br />
+
+                How did you hear about the event?<br />
+                <select>
+                    <option>--Select--</option>
+                    <option>Friend</option>
+                    <option>Social Media</option>
+                    <option>College Website</option>
+                </select><br /><br />
+
+                <!-- Submit and Reset buttons -->
+                <input type="submit" value="Submit Feedback" style="background-color: red;" /><br /><br />
+                <input type="reset" value="Clear Form" />
+
+                <!-- College sticker container -->
+            <div class="sticker-container">
+                <img src="html6.png" alt="College Sticker" class="sticker" />
+            </div>
+        </div>
+    </form>
+
+    <!-- Added statement before video -->
+    <h3>
+        Here’s a short video to sum up the party!
+    </h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/eNUpTV9BGac" title="Fresher Party Vibes"
+        frameborder="0" allowfullscreen></iframe>
+</body>
+
+</html>

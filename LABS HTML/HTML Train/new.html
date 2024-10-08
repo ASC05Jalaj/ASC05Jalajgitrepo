@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fresher Party Feedback</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin: 0; /* Remove default margin */
+                padding: 20px; /* Add some padding around the content */
+            }
+            h1 {
+                color: #ff6600;
+            }
+            form {
+                background-color: white; /* Default white background for the form */
+                width: 50%; /* Form width */
+                margin: 0 auto; /* Center the form */
+                padding: 20px;
+                border-radius: 10px; /* Rounded corners */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            }
+            input, select, textarea {
+                width: 80%; /* Input width */
+                padding: 10px; /* Padding for input fields */
+                margin: 10px 0; /* Margin around input fields */
+                border-radius: 5px; /* Rounded corners for input fields */
+                border: 1px solid #ccc; /* Border styling */
+            }
+            input[type="submit"], input[type="reset"] {
+                background-color: #ff6600; /* Button color */
+                color: white; /* Button text color */
+                border: none; /* Remove border */
+                cursor: pointer; /* Pointer cursor for buttons */
+                font-size: 16px; /* Button text size */
+                width: 40%; /* Button width */
+                padding: 10px; /* Padding for buttons */
+            }
+            input[type="submit"]:hover, input[type="reset"]:hover {
+                background-color: #e65c00; /* Darker color on hover */
+            }
+            h3 {
+                color: #333; /* Heading color */
+            }
+            iframe {
+                margin-top: 20px; /* Space above the video */
+                border: 2px solid #ff6600; /* Video border color */
+                border-radius: 10px; /* Rounded corners for video */
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Freshers' Party Feedback Form</h1>
+        
+        <!-- Feedback form starts here -->
+        <form>
+            <div>
+                <!-- Basic form fields for feedback -->
+                Your Name: <input type="text" /><br/><br/>
+
+                How was the event? <br/>
+                <textarea placeholder="Share your experience"></textarea><br/><br/>
+                Rate the party (1-10): <input type="range" min="1" max="10" /><br/><br/>
+
+                Favorite Part of the Party:<br/>
+                <input type="checkbox"> Music
+                <input type="checkbox"> Dance
+                <input type="checkbox"> Food<br/><br/>
+
+                Would you attend again?<br/>
+                <input type="radio" name="attend" /> Yes
+                <input type="radio" name="attend" /> No<br/><br/>
+
+                How did you hear about the event?<br/>
+                <select>
+                    <option>Friend</option>
+                    <option>Social Media</option>
+                    <option>College Website</option>
+                </select><br/><br/>
+
+                <!-- Submit and Reset buttons -->
+                <input type="submit" value="Submit Feedback" /> &nbsp;
+                <input type="reset" value="Clear Form" />
+            </div>
+        </form>
+
+        <!-- Added statement before video -->
+        <h3>Here’s a short video to sum up the party!</h3>
+
+        <!-- Fun music video at the end -->
+        <iframe width="656" height="369" src="https://www.youtube.com/embed/D7tit_JZKvk" title="Fresher Party Vibes" frameborder="0" allowfullscreen></iframe>
+    </body>
+</html>
