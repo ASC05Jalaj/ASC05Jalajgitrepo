@@ -1,6 +1,6 @@
 // Vehicle types
-let make: string = "Scorpio N"; // string
-let model: string = "Z6"; // string
+//let make: string = "Scorpio N"; // string
+//let model: string = "Z6"; // string
 let year: number = 2023; // number
 let isElectric: boolean = false; // boolean
 let mileage: any = 15; // any
