@@ -1,5 +1,5 @@
-// Base class Vehicle
-class Vehicle1 {
+// Base class Vehicle1
+class Vehicle3 {
     protected vehicleType: string; // Declare as protected
 
     constructor(type: string) {
@@ -12,8 +12,8 @@ class Vehicle1 {
     }
 }
 
-// Derived class SUV that extends Vehicle
-class Vehicle_type extends Vehicle1 {
+// Derived class SUV that extends Vehicle1
+class Vehicle_type extends Vehicle3 {
     constructor(public type: string, public features: string) {
         super(type); // Call the base class constructor
         console.log("Vehicle_type constructor completed");

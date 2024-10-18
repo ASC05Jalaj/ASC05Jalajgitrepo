@@ -1,5 +1,5 @@
 // Base class Vehicle
-class Vehicle {
+class Vehicle2 {
     constructor(public model: string) {}
     
     startEngine(): void {
@@ -8,7 +8,7 @@ class Vehicle {
 }
 
 // Derived class Car that extends Vehicle
-class Car extends Vehicle {
+class Car extends Vehicle2 {
     constructor(model: string) {
         super(model);
         console.log("Car constructor called");
@@ -21,7 +21,7 @@ class Car extends Vehicle {
 
 // Creating instances of Vehicle and Car
 console.log("***************************");
-const vehicle = new Vehicle("Vehicle");
+const vehicle = new Vehicle2("Vehicle");
 vehicle.startEngine(); // Output: Vehicle engine starts.
 
 const car = new Car("Scorpio N");

@@ -1,5 +1,6 @@
 // Vehicle types
 let make: string = "Scorpio N"; // string
+
 let model: string = "Z6"; // string
 let year: number = 2023; // number
 let isElectric: boolean = false; // boolean
@@ -10,7 +11,7 @@ let serviceHistory: { date: string; service: string }[] = [ // object array
     { date: "2024-01-15", service: "Oil Change" },
     { date: "2024-06-20", service: "Diesel Exhaust Fluid Refill" }
 ]; 
-let owner_years_owned: [string, number] = ["Jalaj", 1]; // tuple (owner name, years owned)
+let owner_years_owned: [string, number] = ["Aayush", 1]; // tuple (owner name, years owned)
 let vehicleDetails: object = { // object
     registration: "XYZ1234",
     lastServiceDate: "2024-06-20",
