@@ -1,100 +1,117 @@
-console.log("Welcome to Product Management system App");
-
+import * as fs from 'fs';
+import * as readline from 'readline';
 import { ProductManager } from "./productManager";
 import { Product } from "./products";
 
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
 const car = new ProductManager();
 
-const products: Product[] = [
-    {
-        id: 1,
-        name: "Scorpio N",
-        category: "SUV",
-        price: 2199999,
-        rating: 4.7,
-        reviewcounts: 2500,
-        brand: "Mahindra",
-        availability: "Waiting",
-        color: " Sierra Black",
-        storage: "200L",
-        releasedate: "2021-03-15"
-    },
-    {
-        id: 2,
-        name: "JCB 3DX",
-        category: "Earth Mover",
-        price: 4000000,
-        rating: 4.9,
-        reviewcounts: 1500,
-        brand: "JCB",
-        availability: "In Stock",
-        color: "Yellow",
-        storage: "1000L",
-        releasedate: "1999-11-10"
-    },
-    {
-        id: 3,
-        name: "Bullet",
-        category: "Bike",
-        price: 2500000,
-        rating: 4.1,
-        reviewcounts: 3000,
-        brand: "Royal Enfield",
-        availability: "In Stock",
-        releasedate: "2016-07-22"
-    },
-    {
-        id: 4,
-        name: "Swaraj 745",
-        category: "Tractor",
-        price: 699999,
-        rating: 3.8,
-        reviewcounts: 12000,
-        brand: "Mahindra",
-        availability: "In Stock",
-        color: "Blue",
-        releasedate: "2001-05-05"
-    },
-    {
-        id: 5,
-        name: "Duster",
-        category: "Compact SUV",
-        price: 1300000,
-        rating: 4.9,
-        reviewcounts: 800,
-        brand: "Renault",
-        availability: "Discontinued",
-        color: "Brown",
-        releasedate: "2015-01-15"
+// Load products from JSON file
+function loadProducts() {
+    if (fs.existsSync('products.json')) {
+        const rawData = fs.readFileSync('products.json', 'utf-8');
+        const products: Product[] = JSON.parse(rawData);
+        products.forEach(product => car.addProduct(product));
     }
-];
+}
 
-products.forEach(product => car.addProduct(product));
+// Save products to JSON file
+function saveProducts() {
+    const data = JSON.stringify(car.listProducts(), null, 2);
+    fs.writeFileSync('products.json', data);
+}
 
-console.log("All Products:", car.listProducts());
+// Display the menu
+function displayMenu() {
+    console.log("\nSelect an option:");
+    console.log("1: Create Product");
+    console.log("2: Read Products");
+    console.log("3: Update Product");
+    console.log("4: Delete Product");
+    console.log("5: Exit");
+}
 
-car.removeProduct(1);
-car.removeProduct(3);
+// Handle user input
+function handleInput(option: string) {
+    switch (option) {
+        case '1':
+            rl.question("Enter product details (id, name, category, price, rating, reviewscount, brand, availability, color, storage, releaseDate) separated by commas: ", (input) => {
+                const details = input.split(',').map(item => item.trim());
+                const newProduct: Product = {
+                    id: parseInt(details[0]),
+                    name: details[1],
+                    category: details[2],
+                    price: parseFloat(details[3]),
+                    rating: parseFloat(details[4]),
+                    reviewscount: parseInt(details[5]),
+                    brand: details[6],
+                    availability: details[7],
+                    color: details[8],
+                    storage: details[9],
+                    releaseDate: details[10]
+                };
+                car.addProduct(newProduct);
+                saveProducts();
+                console.log("Product created successfully!");
+                mainMenu();
+            });
+            break;
+        case '2':
+            console.log("All Products:", car.listProducts());
+            mainMenu();
+            break;
+        case '3':
+            rl.question("Enter product ID to update: ", (idStr) => {
+                const id = parseInt(idStr);
+                rl.question("Enter fields to update (e.g., price=99.99, rating=4.5): ", (updates) => {
+                    const updateFields = updates.split(',').reduce((acc, field) => {
+                        const [key, value] = field.split('=').map(item => item.trim());
+                        const typedKey = key as keyof Product; // Use keyof Product
 
-console.log("Products after removal:", car.listProducts());
+                        if (typedKey === "price" || typedKey === "rating" || typedKey === "reviewscount") {
+                            acc[typedKey] = Number(value); // Ensure numeric fields are numbers
+                        } else {
+                            acc[typedKey] = value; // Treat other fields as strings
+                        }
 
-let np6: Product = {
-    id: 6,
-    name: "Speed 400",
-    category: "Cruiser Bike",
-    price: 2840000,
-    rating: 4.9,
-    reviewcounts: 120,
-    brand: "Triumph",
-    availability: "In Stock",
-    color: "Black",
-    releasedate: "2021-08-01"
-};
+                        return acc;
+                    }, {} as Partial<Product>);
 
-car.addProduct(np6);
+                    car.updateProduct(id, updateFields);
+                    saveProducts();
+                    console.log("Product updated successfully!");
+                    mainMenu();
+                });
+            });
+            break;
+        case '4':
+            rl.question("Enter product ID to delete: ", (idStr) => {
+                const id = parseInt(idStr);
+                car.removeProduct(id);
+                saveProducts();
+                console.log("Product deleted successfully!");
+                mainMenu();
+            });
+            break;
+        case '5':
+            rl.close();
+            break;
+        default:
+            console.log("Invalid option. Please try again.");
+            mainMenu();
+    }
+}
 
-console.log("All Products after adding id : 6:", car.listProducts());
+// Main menu function
+function mainMenu() {
+    displayMenu();
+    rl.question("Select an option: ", handleInput);
+}
 
-car.updateProduct(6, { price : 290000});
-
-console.log("All Products after updating price of id 6 is :", car.listProducts());
+// Load products and start the menu
+loadProducts();
+mainMenu();

@@ -1,10 +1,11 @@
 {
     "compilerOptions": {
-        "target": "ES2018",
-        "outDir": "./dist",
-        "rootDir": "./src",
-        "module": "CommonJS",
-        
+        "target": "es6",
+        "module": "commonjs",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "types": ["node"] // Add this line if it’s not already present
     }
-    
 }
