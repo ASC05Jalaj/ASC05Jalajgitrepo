@@ -12,12 +12,12 @@ const products: Product[] = [
         category: "SUV",
         price: 2199999,
         rating: 4.7,
-        reviewscount: 2500,
+        reviewcounts: 2500,
         brand: "Mahindra",
         availability: "Waiting",
         color: " Sierra Black",
         storage: "200L",
-        releaseDate: "2021-03-15"
+        releasedate: "2021-03-15"
     },
     {
         id: 2,
@@ -25,12 +25,12 @@ const products: Product[] = [
         category: "Earth Mover",
         price: 4000000,
         rating: 4.9,
-        reviewscount: 1500,
+        reviewcounts: 1500,
         brand: "JCB",
         availability: "In Stock",
         color: "Yellow",
         storage: "1000L",
-        releaseDate: "1999-11-10"
+        releasedate: "1999-11-10"
     },
     {
         id: 3,
@@ -38,10 +38,10 @@ const products: Product[] = [
         category: "Bike",
         price: 2500000,
         rating: 4.1,
-        reviewscount: 3000,
+        reviewcounts: 3000,
         brand: "Royal Enfield",
         availability: "In Stock",
-        releaseDate: "2016-07-22"
+        releasedate: "2016-07-22"
     },
     {
         id: 4,
@@ -49,11 +49,11 @@ const products: Product[] = [
         category: "Tractor",
         price: 699999,
         rating: 3.8,
-        reviewscount: 12000,
+        reviewcounts: 12000,
         brand: "Mahindra",
         availability: "In Stock",
         color: "Blue",
-        releaseDate: "2001-05-05"
+        releasedate: "2001-05-05"
     },
     {
         id: 5,
@@ -61,11 +61,11 @@ const products: Product[] = [
         category: "Compact SUV",
         price: 1300000,
         rating: 4.9,
-        reviewscount: 800,
+        reviewcounts: 800,
         brand: "Renault",
         availability: "Discontinued",
         color: "Brown",
-        releaseDate: "2015-01-15"
+        releasedate: "2015-01-15"
     }
 ];
 
@@ -80,21 +80,21 @@ console.log("Products after removal:", car.listProducts());
 
 let np6: Product = {
     id: 6,
-    name: "Gaming Mouse",
-    category: "Accessories",
-    price: 79.99,
-    rating: 4.6,
-    reviewscount: 200,
-    brand: "Brand F",
+    name: "Speed 400",
+    category: "Cruiser Bike",
+    price: 2840000,
+    rating: 4.9,
+    reviewcounts: 120,
+    brand: "Triumph",
     availability: "In Stock",
     color: "Black",
-    releaseDate: "2023-08-01"
+    releasedate: "2021-08-01"
 };
 
 car.addProduct(np6);
 
 console.log("All Products after adding id : 6:", car.listProducts());
 
-car.updateProduct(6, { price : 89.99});
+car.updateProduct(6, { price : 290000});
 
 console.log("All Products after updating price of id 6 is :", car.listProducts());

@@ -13,6 +13,10 @@ export class ProductManager {
         this.products = this.products.filter(product => product.id !== id);
     }
 
-    //Try it : Implementing search methods.
+    updateProduct(id: number, updates: Partial<Product>): void {
+        const prodIndex = this.products.findIndex(products => products.id === id);
+        this.products[prodIndex] = { ...this.products[prodIndex], ...updates };
+      }
+    
 
 }
