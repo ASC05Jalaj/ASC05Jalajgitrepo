@@ -41,7 +41,7 @@
       "title": "Password Reset Email Not Sending",
       "description": "Password reset email is not being delivered to the user inbox.",
       "priority": "High",
-      "assignee": "",
+      "assignee": "Gaurav",
       "status": "Open",
       "updatedAt": "2024-11-14T09:45:12.811Z"
     },
@@ -50,7 +50,7 @@
       "title": "Slow Page Load Time",
       "description": "Pages are taking over 5 seconds to load. Needs optimization.",
       "priority": "Medium",
-      "assignee": "Ahmed",
+      "assignee": "Swarneem",
       "status": "In Progress",
       "updatedAt": "2024-11-14T08:22:11.811Z"
     },
@@ -59,7 +59,7 @@
       "title": "CSS Styling Issue",
       "description": "The button colors on mobile view are not aligning correctly.",
       "priority": "Low",
-      "assignee": "Maya",
+      "assignee": "Subbu",
       "status": "Resolved",
       "updatedAt": "2024-11-13T17:05:28.811Z"
     },
@@ -68,7 +68,7 @@
       "title": "404 Page Not Found Error",
       "description": "User encounters a 404 error when accessing the resources page.",
       "priority": "High",
-      "assignee": "Aiden",
+      "assignee": "Papa",
       "status": "Closed",
       "updatedAt": "2024-11-14T10:06:01.060Z"
     },
@@ -77,7 +77,7 @@
       "title": "Email Signature Not Rendering",
       "description": "The email signature is not being displayed properly on sent emails.",
       "priority": "Medium",
-      "assignee": "Leah",
+      "assignee": "Mom",
       "status": "In Progress",
       "updatedAt": "2024-11-14T11:02:30.811Z"
     },
@@ -86,9 +86,18 @@
       "title": "Error in Payment Gateway",
       "description": "Users are unable to complete transactions due to an error with the payment gateway.",
       "priority": "High",
-      "assignee": "Jordan",
+      "assignee": "Deepak",
       "status": "Closed",
       "updatedAt": "2024-11-12T16:40:50.811Z"
+    },
+    {
+      "id": "c550",
+      "title": "error not found",
+      "description": "hgdsjndsjds",
+      "priority": "Medium",
+      "assignee": "Security Guard",
+      "status": "Closed",
+      "updatedAt": "2024-11-14T10:39:01.696Z"
     }
   ]
 }
