@@ -1,0 +1,232 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #1e1e1e;
+  color: #fff;
+  height: 100%;
+}
+
+.home {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1.5s ease-out;
+}
+
+.welcome-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ecf0f1;
+  animation: fadeIn 2s ease-out;
+}
+
+.welcome-section p {
+  font-size: 1.1rem;
+  color: #95a5a6;
+  animation: fadeIn 2s ease-out;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 2rem;
+  gap: 2rem;
+  animation: fadeIn 2s ease-out;
+}
+
+.feature-card {
+  background-color: #444;
+  border-radius: 10px;
+  padding: 2rem;
+  flex-basis: 30%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeIn 2s ease-out forwards;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
+.feature-card i {
+  font-size: 3rem;
+  color: #95a5a6;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  font-size: 1.8rem;
+  color: #ecf0f1;
+  margin-bottom: 1rem;
+}
+
+.feature-card p {
+  font-size: 1.1rem;
+  color: #bdc3c7;
+  margin-bottom: 1rem;
+}
+
+.feature-details {
+  list-style-type: none;
+  padding: 0;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.feature-details li {
+  margin-bottom: 10px;
+}
+
+.feature-details li strong {
+  color: #ecf0f1;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .features {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .feature-card {
+      flex-basis: 80%;
+      margin-bottom: 1.5rem;
+  }
+}
+
+.feature-card i {
+  font-size: 3rem;
+  color: #95a5a6;
+  margin-bottom: 1rem;
+}
+
+.feature-card.manage-trips {
+  background-color: #2c3e50;
+}
+
+.feature-card.manage-trips i {
+  color: #7f8c8d;
+}
+
+.feature-card.manage-trips h3 {
+  color: #ecf0f1;
+}
+
+.feature-card.manage-trips p {
+  color: #bdc3c7;
+}
+
+.feature-card.manage-trips ul li {
+  color: #7f8c8d;
+}
+
+.feature-card.manage-cabs {
+  background-color: #34495e;
+}
+
+.feature-card.manage-cabs i {
+  color: #95a5a6;
+}
+
+.feature-card.manage-cabs h3 {
+  color: #ecf0f1;
+}
+
+.feature-card.manage-cabs p {
+  color: #bdc3c7;
+}
+
+.feature-card.manage-cabs ul li {
+  color: #95a5a6;
+}
+
+.feature-card.manage-bookings {
+  background-color: #7f8c8d;
+}
+
+.feature-card.manage-bookings i {
+  color: #95a5a6;
+}
+
+.feature-card.manage-bookings h3 {
+  color: #ecf0f1;
+}
+
+.feature-card.manage-bookings p {
+  color: #bdc3c7;
+}
+
+.feature-card.manage-bookings ul li {
+  color: #ecf0f1;
+}
+
+.feature-card.manage-payments {
+  background-color: #555;
+}
+
+.feature-card.manage-payments i {
+  color: #95a5a6;
+}
+
+.feature-card.manage-payments h3 {
+  color: #ecf0f1;
+}
+
+.feature-card.manage-payments p {
+  color: #bdc3c7;
+}
+
+.feature-card.manage-payments ul li {
+  color: #ecf0f1;
+}
+
+button {
+  padding: 1rem 2rem;
+  background-color: #34495e;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 2s ease-out forwards;
+}
+
+button:hover {
+  background-color: #2c3e50;
+}
+
+button:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin-top: 1rem;
+  color: #e74c3c;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}

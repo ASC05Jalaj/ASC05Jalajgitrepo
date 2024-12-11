@@ -1,0 +1,172 @@
+<div class="container">
+  <h1 class="page-title">Manage Trips</h1>
+
+  <div class="search-bar">
+    <form [formGroup]="searchForm">
+      <input type="text" formControlName="search" placeholder="Search bookings by ID, Passenger, Phone, Pickup, Destination, Booking Date, Cabs or Status" />
+    </form>
+  </div>
+
+  <div *ngIf="selectedBooking" class="edit-form">
+    <h3>Edit Booking</h3>
+    <form>
+      <div class="edit-form-row">
+        <div class="edit-form-group">
+          <label for="id" class="edit-form-label">ID</label>
+          <input
+            id="id"
+            [(ngModel)]="selectedBooking.id"
+            name="id"
+            class="form-control"
+            disabled
+          />
+        </div>
+        <div class="edit-form-group">
+          <label for="status" class="edit-form-label">Status</label>
+          <select
+            id="status"
+            [(ngModel)]="selectedBooking.status"
+            name="status"
+            class="form-control"
+            required
+          >
+            <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+          </select>
+        </div>
+        <div class="edit-form-group">
+          <label for="model" class="edit-form-label">Model</label>
+          <select
+            id="model"
+            [(ngModel)]="selectedBooking.model"
+            name="model"
+            class="form-control"
+            required
+          >
+            <option *ngFor="let cab of cabs" [value]="cab.model">{{ cab.model }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="edit-form-row">
+        <div class="edit-form-group">
+          <label for="passenger" class="edit-form-label">Passenger</label>
+          <input
+            id="passenger"
+            [(ngModel)]="selectedBooking.passenger"
+            name="passenger"
+            class="form-control"
+            required
+            placeholder="Enter passenger name"
+          />
+        </div>
+        <div class="edit-form-group">
+          <label for="phoneNumber" class="edit-form-label">Phone</label>
+          <input
+            id="phoneNumber"
+            [(ngModel)]="selectedBooking.phoneNumber"
+            name="phoneNumber"
+            class="form-control"
+            required
+            placeholder="Enter phone number"
+          />
+        </div>
+      </div>
+
+      <div class="edit-form-row">
+        <div class="edit-form-group">
+          <label for="pickup" class="edit-form-label">Pickup</label>
+          <input
+            id="pickup"
+            [(ngModel)]="selectedBooking.pickup"
+            name="pickup"
+            class="form-control"
+            required
+            placeholder="Enter pickup location"
+          />
+        </div>
+        <div class="edit-form-group">
+          <label for="destination" class="edit-form-label">Destination</label>
+          <input
+            id="destination"
+            [(ngModel)]="selectedBooking.destination"
+            name="destination"
+            class="form-control"
+            required
+            placeholder="Enter destination"
+          />
+        </div>
+        <div class="edit-form-group">
+          <label for="bookingDate" class="edit-form-label">Booking Date</label>
+          <input
+            id="bookingDate"
+            type="date"
+            [(ngModel)]="selectedBooking.bookingDate"
+            name="bookingDate"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="edit-form-group">
+          <label for="bookingTime" class="edit-form-label">Booking Time</label>
+          <input
+            id="bookingTime"
+            type="time"
+            [(ngModel)]="selectedBooking.bookingTime"
+            name="bookingTime"
+            class="form-control"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-submit" (click)="onSave()">Save</button>
+        <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <hr />
+  <div *ngIf="filteredBookings && filteredBookings.length > 0" class="booking-list">
+    <h3 class="section-title">Current Trips</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Passenger</th>
+          <th>Phone</th>
+          <th>Pickup</th>
+          <th>Destination</th>
+          <th>Booking Date</th>
+          <th>Booking Time</th>
+          <th>Cabs</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of filteredBookings">
+          <td>{{ booking.id }}</td>
+          <td>{{ booking.passenger }}</td>
+          <td>{{ booking.phoneNumber }}</td>
+          <td>{{ booking.pickup }}</td>
+          <td>{{ booking.destination }}</td>
+          <td>{{ booking.bookingDate }}</td>
+          <td>{{ booking.bookingTime }}</td>
+          <td>{{ booking.model }}</td>
+          <td>{{ booking.status }}</td>
+          <td>
+            <button class="btn btn-edit" (click)="onEdit(booking)">Edit</button>
+            <button class="btn btn-delete" (click)="onDelete(booking.id!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="filteredBookings.length === 0">
+    <div class="alert">
+      No bookings available!
+    </div>
+  </div>
+</div>

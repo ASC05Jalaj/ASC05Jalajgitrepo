@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <ul class="navbar-list">
+    <li class="navbar-item"><a routerLink="home" routerLinkActive="active">Home</a></li>
+    
+    <li class="navbar-item"><a routerLink="cabs" routerLinkActive="active">Cabs</a></li>
+    <li class="navbar-item"><a routerLink="bookings" routerLinkActive="active">Bookings</a></li>
+    <li class="navbar-item"><a routerLink="trips" routerLinkActive="active">Trips</a></li>
+    <li class="navbar-item"><a routerLink="payments" routerLinkActive="active">Payments</a></li>
+    <li class="navbar-item"><a routerLink="feedback" routerLinkActive="active">Feedback</a></li>
+    <li class="navbar-item"><a routerLink="add-admin" routerLinkActive="active">Add Admin</a></li>
+    <!-- <li class="navbar-item"><a routerLink="/" routerLinkActive="active">Logout</a></li> -->
+     <li class="navbar-item"><button class="logout-button" (click)="logout()">Logout</button></li>
+    
+  </ul>
+</nav>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

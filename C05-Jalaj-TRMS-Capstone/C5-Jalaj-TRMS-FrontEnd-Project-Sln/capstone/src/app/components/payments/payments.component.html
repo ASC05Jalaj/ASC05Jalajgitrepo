@@ -1,0 +1,72 @@
+<div class="container">
+  <h1 class="page-title">Payments</h1>
+
+  <div *ngIf="paymentError" class="alert alert-danger fade-in">
+    {{ paymentError }}
+  </div>
+
+  <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="payment-form">
+    <div class="form-group-row">
+      <div class="form-group">
+        <label for="amount" class="form-label">Amount</label>
+        <input id="amount" formControlName="amount" type="number" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="mode" class="form-label">Mode</label>
+        <select id="mode" formControlName="mode" class="form-control">
+          <option value="" disabled>Select Mode</option>
+          <option value="cash">Cash</option>
+          <option value="credit_card">Credit Card</option>
+          <option value="debit_card">Debit Card</option>
+          <option value="upi">UPI</option>
+        </select>
+      </div>
+
+      <div class="form-group" *ngIf="!editingPayment">
+        <label for="bookingId" class="form-label">Booking</label>
+        <select id="bookingId" formControlName="bookingId" class="form-control">
+          <option value="" disabled>Select Booking</option>
+          <option *ngFor="let booking of bookings" [value]="booking.id">
+            {{ booking.id }} - {{ booking.pickup }} to {{ booking.destination }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group" *ngIf="editingPayment">
+        <label for="booking" class="form-label">Booking</label>
+        <input id="booking" type="text" class="form-control" [value]="editingPayment.booking.id" readonly />
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-submit">{{ editingPayment ? 'Update Payment' : 'Add Payment' }}</button>
+      <button *ngIf="editingPayment" type="button" class="btn btn-cancel" (click)="cancelEdit()">Cancel</button>
+    </div>
+  </form>
+
+  <hr />
+
+  <div class="search-bar">
+    <input 
+      type="text" 
+      class="form-control" 
+      placeholder="Search by Payment ID, Booking ID, or Mode" 
+      [(ngModel)]="searchQuery" 
+      (input)="searchPayments()" />
+  </div>
+
+  <h2 class="section-title">Existing Payments</h2>
+  <ul class="payment-list">
+    <li *ngFor="let payment of filteredPayments" class="payment-item fade-in">
+      <div class="payment-id">
+        <strong>Payment ID:</strong> {{ payment.id }}
+      </div>
+      <div class="payment-info">
+        {{ payment.mode }} - ₹{{ payment.amount }} (Booking: {{ payment.booking.id }})
+      </div>
+      <button (click)="editPayment(payment)" class="btn btn-edit">Edit</button>
+      <button (click)="deletePayment(payment.id)" class="btn btn-delete">Delete</button>
+    </li>
+  </ul>
+</div>
