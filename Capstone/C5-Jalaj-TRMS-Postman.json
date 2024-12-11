@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "b0908057-de95-4690-8bcb-085c88450504",
+		"name": "Capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39277927"
+	},
+	"item": [
+		{
+			"name": "Post Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"John3 Doe\",\r\n        \"email\": \"john2456344.doe@example.com\",\r\n        \"password\": \"password11123\",\r\n        \"phone_number\": \"624637635\",\r\n        \"created_at\": \"2024-09-04 00:00:00\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post cabs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model\": \"Thela\",\r\n    \"vNumber\": \"ABV1122\",\r\n    \"driver\": \"Aayush ki biwi Driver\",\r\n    \"seats\": 10\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/cabs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"cabs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Booking",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"passenger\": \"Jalaj Jha\",\r\n        \"phoneNumber\": \"1234567999\",\r\n        \"pickup\": \"dhanbad\",\r\n        \"destination\": \"Gang\",\r\n        \"status\": \"Cancelled\",\r\n        \"bookingDate\": \"2024-12-17\",\r\n        \"bookingTime\": \"2:02 PM\",\r\n        \"model\": \"Harrier\",\r\n        \"cab\": {\r\n            \"id\": \"C0008\",\r\n            \"model\": \"Harrier\",\r\n            \"vNumber\": \"BR01A0069\",\r\n            \"driver\": \"Ayush\",\r\n            \"seats\": 3\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/bookings/B0004",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"bookings",
+						"B0004"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post payment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"amount\": 500,\r\n    \"mode\": \"Credit Card\",\r\n    \"booking\": {\r\n        \"id\": \"B0007\"\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/payments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"payments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Feedback",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"rating\": \"5\",\r\n    \"review\": \"Excellent service, very comfortable ride!\",\r\n    \"booking\": {\r\n        \"id\": \"B0001\"\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/feedbacks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"feedbacks"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

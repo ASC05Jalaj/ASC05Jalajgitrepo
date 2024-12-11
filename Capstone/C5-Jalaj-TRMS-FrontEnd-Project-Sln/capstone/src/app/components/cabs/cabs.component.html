@@ -1,0 +1,88 @@
+<div class="cab-management">
+  <h1>Cab Management</h1>
+  <div class="cab-form">
+    <h2 *ngIf="!selectedCab">Add New Cab</h2>
+    <h2 *ngIf="selectedCab">Update Cab</h2>
+
+    <form [formGroup]="cabForm" (ngSubmit)="selectedCab ? onUpdateCab() : onAddCab()">
+      <div class="form-row">
+        <div>
+          <label for="model">Model</label>
+          <input id="model" formControlName="model" type="text" />
+          
+          <div *ngIf="cabForm.get('model')?.touched && cabForm.get('model')?.invalid">
+            <small *ngIf="cabForm.get('model')?.hasError('required')">Model is required.</small>
+          </div>
+        </div>
+        
+        <div>
+          <label for="vNumber">Vehicle Number</label>
+          <input id="vNumber" formControlName="vNumber" type="text" />
+          <div *ngIf="cabForm.get('vNumber')?.touched && cabForm.get('vNumber')?.invalid">
+            <small *ngIf="cabForm.get('vNumber')?.hasError('required')">Vehicle number is required.</small>
+            <small *ngIf="cabForm.get('vNumber')?.hasError('pattern')">Invalid vehicle number format. Example: AB12CD1234</small>
+          </div>
+        </div>
+        
+        <div>
+          <label for="driver">Driver</label>
+          <input id="driver" formControlName="driver" type="text" />
+          <div *ngIf="cabForm.get('driver')?.touched && cabForm.get('driver')?.invalid">
+            <small *ngIf="cabForm.get('driver')?.hasError('required')">Driver name is required.</small>
+          </div>
+        </div>
+        
+        <div>
+          <label for="seats">Seats</label>
+          <input id="seats" formControlName="seats" type="number" />
+          <div *ngIf="cabForm.get('seats')?.touched && cabForm.get('seats')?.invalid">
+            <small *ngIf="cabForm.get('seats')?.hasError('required')">Seats are required.</small>
+            <small *ngIf="cabForm.get('seats')?.hasError('min')">Seats must be at least 1.</small>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="cabForm.invalid">{{ selectedCab ? 'Update' : 'Add' }} Cab</button>
+      <button type="button" (click)="resetForm()">Reset</button>
+    </form>
+  </div>
+
+  <div class="cab-list">
+    <h2>Cab List</h2>
+
+    <div class="search-bar-container">
+      <input 
+        type="text" 
+        placeholder="Search by ID, Model, Vehicle Number, Driver, Seats..." 
+        [(ngModel)]="searchTerm" 
+        (input)="filterCabs()"
+        class="search-bar" />
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Model</th>
+          <th>Vehicle Number</th>
+          <th>Driver</th>
+          <th>Seats</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cab of filteredCabs">
+          <td>{{ cab.id }}</td>
+          <td>{{ cab.model }}</td>
+          <td>{{ cab.vNumber }}</td>
+          <td>{{ cab.driver }}</td>
+          <td>{{ cab.seats }}</td>
+          <td>
+            <button (click)="onSelectCab(cab)">Edit</button>
+            <button (click)="onDeleteCab(cab.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

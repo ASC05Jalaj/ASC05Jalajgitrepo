@@ -1,0 +1,109 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%; border-radius: 15px;">
+    <div class="card-body">
+      <h2 class="text-center mb-4">{{ admin.id ? 'Edit Admin' : 'Register New Admin' }}</h2>
+
+      <form (ngSubmit)="onSubmit()" #adminForm="ngForm">
+
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-control" [(ngModel)]="admin.email" #email="ngModel" required email />
+          <div *ngIf="email.invalid && email.touched" class="text-danger">
+            <div *ngIf="email.errors?.['required']">Email is required.</div>
+            <div *ngIf="email.errors?.['email']">Please enter a valid email.</div>
+            <div *ngIf="emailTaken" class="text-danger">Email is already in use.</div>
+          </div>
+        </div>
+
+        <!-- Full Name Field -->
+        <div class="form-group">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" id="name" name="name" class="form-control" [(ngModel)]="admin.name" #name="ngModel" required pattern="^[A-Za-z ]+$" />
+          <div *ngIf="name.invalid && name.touched" class="text-danger">
+            <div *ngIf="name.errors?.['required']">Name is required.</div>
+            <div *ngIf="name.errors?.['pattern']">Name can only contain alphabets and spaces.</div>
+          </div>
+        </div>
+
+        <!-- Phone Number Field -->
+        <div class="form-group">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="text" id="phone" name="phone" class="form-control" [(ngModel)]="admin.phone_number" #phone="ngModel" required pattern="^\d{10}$" />
+          <div *ngIf="phone.invalid && phone.touched" class="text-danger">
+            <div *ngIf="phone.errors?.['required']">Phone number is required.</div>
+            <div *ngIf="phone.errors?.['pattern']">Please enter exactly 10 digits.</div>
+            <div *ngIf="phoneTaken" class="text-danger">Phone number is already in use.</div>
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" name="password" class="form-control" [(ngModel)]="admin.password" #password="ngModel" required
+                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" />
+          <div *ngIf="password.invalid && password.touched" class="text-danger">
+            <div *ngIf="password.errors?.['required']">Password is required.</div>
+            <div *ngIf="password.errors?.['pattern']">Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.</div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-block mt-3" [disabled]="adminForm.invalid">{{ admin.id ? 'Update Admin' : 'Register' }}</button>
+        
+        <!-- Reset Form Button -->
+        <button type="button" class="btn btn-secondary btn-block mt-2" (click)="resetForm()">Reset Form</button>
+
+      </form>
+
+      <!-- Success/Error Alerts -->
+      <div *ngIf="registrationSuccess" class="alert alert-success mt-3">Registration successful!</div>
+      <div *ngIf="registrationError" class="alert alert-danger mt-3">There was an error with the registration. Please try again.</div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Admin List and Search -->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2 class="text-center mb-4">Admin List</h2>
+      
+      <!-- Search Input -->
+      <div class="form-group">
+        <label for="search" class="form-label">Search</label>
+        <input type="text" id="search" name="search" class="form-control" [(ngModel)]="searchTerm" (ngModelChange)="filterAdmins()" placeholder="Search by name, email, or phone" />
+      </div>
+      
+      <!-- Admin Table -->
+      <div class="table-container mt-3" style="max-height: 500px; overflow-y: auto;">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Created At</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let admin of filteredAdminsList">
+              <td>{{admin.id}}</td>
+              <td>{{ admin.name }}</td>
+              <td>{{ admin.email }}</td>
+              <td>{{ admin.phone_number }}</td>
+              <td>{{admin.created_at}}</td>
+              <td>
+                <button (click)="editAdmin(admin)" class="btn btn-warning btn-sm">Edit</button>
+                <button (click)="deleteAdmin(admin.id)" class="btn btn-danger btn-sm">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

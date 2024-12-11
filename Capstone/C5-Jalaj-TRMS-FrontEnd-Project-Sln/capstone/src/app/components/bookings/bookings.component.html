@@ -1,0 +1,148 @@
+<div class="container">
+  <h2 class="page-title">Create Booking</h2>
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+    <div class="form-group-row">
+      <div class="form-group">
+        <label for="passenger" class="form-label">Passenger Name</label>
+        <input
+          type="text"
+          id="passenger"
+          formControlName="passenger"
+          class="form-control"
+          placeholder="Enter passenger name"
+          required
+        />
+        <div *ngIf="formControls['passenger']?.invalid && formControls['passenger']?.touched" class="error-message">
+          <small *ngIf="formControls['passenger']?.errors?.['required']">Passenger name is required.</small>
+          <small *ngIf="formControls['passenger']?.errors?.['pattern']">Only letters are allowed.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input
+          type="text"
+          id="phoneNumber"
+          formControlName="phoneNumber"
+          class="form-control"
+          placeholder="Enter phone number"
+          required
+        />
+        <div *ngIf="formControls['phoneNumber']?.invalid && formControls['phoneNumber']?.touched" class="error-message">
+          <small *ngIf="formControls['phoneNumber']?.errors?.['required']">Phone number is required.</small>
+          <small *ngIf="formControls['phoneNumber']?.errors?.['pattern']">Please enter a valid 10-digit phone number.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group-row">
+      <div class="form-group">
+        <label for="pickup" class="form-label">Pickup Location</label>
+        <input
+          type="text"
+          id="pickup"
+          formControlName="pickup"
+          class="form-control"
+          placeholder="Enter pickup location"
+          required
+        />
+        <div *ngIf="formControls['pickup']?.invalid && formControls['pickup']?.touched" class="error-message">
+          Pickup location is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="destination" class="form-label">Destination</label>
+        <input
+          type="text"
+          id="destination"
+          formControlName="destination"
+          class="form-control"
+          placeholder="Enter destination"
+          required
+        />
+        <div *ngIf="formControls['destination']?.invalid && formControls['destination']?.touched" class="error-message">
+          Destination is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="status" class="form-label">Status</label>
+        <select
+          id="status"
+          formControlName="status"
+          class="form-control"
+          required
+        >
+          <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+        </select>
+        <div *ngIf="formControls['status']?.invalid && formControls['status']?.touched" class="error-message">
+          Status is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group-row">
+      <div class="form-group">
+        <label for="bookingDate" class="form-label">Booking Date</label>
+        <input
+          type="date"
+          id="bookingDate"
+          formControlName="bookingDate"
+          class="form-control"
+          required
+        />
+        <div *ngIf="formControls['bookingDate']?.invalid && formControls['bookingDate']?.touched" class="error-message">
+          <small *ngIf="formControls['bookingDate']?.errors?.['required']">Booking date is required.</small>
+          <small *ngIf="formControls['bookingDate']?.errors?.['dateInPast']">Booking date cannot be in the past.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="bookingTime" class="form-label">Booking Time</label>
+        <input
+          type="time"
+          id="bookingTime"
+          formControlName="bookingTime"
+          class="form-control"
+          required
+        />
+        <div *ngIf="formControls['bookingTime']?.invalid && formControls['bookingTime']?.touched" class="error-message">
+          Booking time is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="model" class="form-label">Cab Model</label>
+        <select
+          id="model"
+          formControlName="model"
+          class="form-control"
+          (change)="onModelChange($event)"
+          required
+        >
+          <option *ngFor="let cab of cabs" [value]="cab.model">{{ cab.model }}</option>
+        </select>
+        <div *ngIf="formControls['model']?.invalid && formControls['model']?.touched" class="error-message">
+          Cab model is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cab" class="form-label">Cab ID</label>
+      <input
+        type="text"
+        id="cab"
+        formControlName="cab"
+        class="form-control"
+        readonly
+        placeholder="Cab ID will be selected automatically"
+      />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-submit">Submit</button>
+    </div>
+  </form>
+</div>
