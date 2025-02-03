@@ -1,0 +1,90 @@
+.icd-box {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #ccc;
+  padding: 8px; /* Reduced padding */
+  border-radius: 5px;
+  background: #f9f9f9;
+  margin-top: 8px;
+}
+
+.icd-item {
+  position: relative;
+  background: #6666CC;
+  color: white;
+  font-size: 12px; /* Reduced font size */
+  padding: 3px 8px; /* Smaller padding */
+  border-radius: 12px; /* Slightly smaller pill shape */
+  margin: 3px; /* Reduced spacing */
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.remove-btn {
+  background: red;
+  border: none;
+  color: white;
+  font-size: 10px; /* Reduced font size */
+  cursor: pointer;
+  margin-left: 4px; /* Slightly reduced margin */
+  border-radius: 50%;
+  width: 16px; /* Reduced width */
+  height: 16px; /* Reduced height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tooltip Adjustments */
+.tooltip {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.icd-item:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.suggestions-box {
+  max-height: 200px; /* Set a max height for the suggestions box */
+  overflow-y: auto;  /* Add scroll if suggestions exceed the height */
+  position: absolute; /* Ensure suggestions box does not overlap with other elements */
+  width: calc(100% - 20px); /* Ensure it doesn't overflow on the right side (adjust padding as needed) */
+  z-index: 100; /* Ensure it appears above other content */
+  background-color: white; /* Optional: Set background to white */
+  border-radius: 4px; /* Optional: Set rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Optional: Add subtle shadow for better visibility */
+  left: 0; /* Align the left side of the suggestions box with the input field */
+}
+
+
+
+.suggestions-box ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.suggestions-box li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.suggestions-box li:hover {
+  background-color: #007bff;
+  color: white;
+}
