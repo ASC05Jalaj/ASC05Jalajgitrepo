@@ -252,6 +252,14 @@ async def calculate_demographic_score(data: DemographicRiskScoreRequest):
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/")
+async def root():
+    return {"message": "HCC Risk Score API is running", "status": "healthy"}
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "service": "HCC Risk Score API"}
+
 
 if __name__ == "__main__":
     import uvicorn
