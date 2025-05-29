@@ -49,6 +49,7 @@ async def calculate_comprehensive_risk_score(data: RiskScoreRequest):
         demographic_risk_score = demographic_risk_profile["risk_score"]
 
         results = []
+        total_hcc_score = 0  # For accumulating HCC-specific risk scores
 
         # Step 2: Process each diagnosis code
         for diagnosis_code in data.diagnosis_codes:
@@ -60,9 +61,6 @@ async def calculate_comprehensive_risk_score(data: RiskScoreRequest):
             }
 
             total_risk_profile = hcc_engine.profile(**diagnosis_profile)
-            total_risk_score = total_risk_profile["risk_score"]
-            diagnosis_risk_score = max(total_risk_score - demographic_risk_score, 0)
-
             hcc_map = total_risk_profile.get("hcc_map", {})
             details = total_risk_profile.get("details", {})
 
@@ -76,6 +74,7 @@ async def calculate_comprehensive_risk_score(data: RiskScoreRequest):
 
                         hcc_specific_key = f"{data.eligibility}_HCC{hcc_code.replace('HCC', '')}"
                         hcc_specific_score = details.get(hcc_specific_key, 0)
+                        total_hcc_score += hcc_specific_score  # Accumulate valid HCC scores
 
                         results.append({
                             "DIAG": diagnosis_code,
@@ -107,18 +106,21 @@ async def calculate_comprehensive_risk_score(data: RiskScoreRequest):
                     "HCC_Description": "No HCC code mapped"
                 })
 
-        # Step 3: Calculate total risk score (sum of all individual HCC scores)
-        total_score = sum(item["Risk_Score"] for item in results)
+        # Final total score = demographic score + sum of HCC scores
+        total_risk_score = round(demographic_risk_score + total_hcc_score, 3)
 
         return {
-            "demographic_score": round(demographic_risk_score, 3),
-            "total_risk_score": round(total_score, 3),
-            "results": results
+            "Demographic_Risk_Score": round(demographic_risk_score, 3),
+            "Total_HCC_Score": round(total_hcc_score, 3),
+            "Total_Risk_Score": total_risk_score,
+            "Details": results
         }
 
     except Exception as e:
-        traceback.print_exc()
-        raise HTTPException(status_code=500, detail=str(e))
+        return {
+            "error": f"Error calculating risk score: {str(e)}"
+        }
+
 
 @app.post("/api/comprehensive-risk-score-with-totals")
 async def calculate_comprehensive_risk_score_with_totals(data: RiskScoreRequest):
